@@ -75,7 +75,6 @@ def data_preprocess():
 	dev_users = []
 	test_users = []
 
-	print(all_users)
 	data_dir = os.path.join(args.data_dir,'split_{}'.format(args.outer_no))
 	with open(os.path.join(data_dir, 'user_career_non_test.csv'), 'r') as csvfile:
 		csv_reader = csv.reader(csvfile, delimiter=',')
