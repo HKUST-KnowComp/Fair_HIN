@@ -405,7 +405,7 @@ def mean_reciprocal_rank(logits, labels):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
-	parser.add_argument('--emb',type=str, default='w50.l100.txt')
+	parser.add_argument('--emb',type=str, default='w200.l200.cupuc.upu.w200.l200.txt')
 
 	parser.add_argument('--batch_size',type=int, default=32)
 
@@ -421,9 +421,9 @@ if __name__ == "__main__":
 
 	parser.add_argument('--data_dir',type=str, default="MovieLens")
 
-	parser.add_argument('--emb_dir',type=str, default="/data/zzengae/code_metapath2vec/emb/moive")
+	parser.add_argument('--emb_dir',type=str, default="emb") 
 
-	parser.add_argument('--save_dir',type=str, default="/data/zzengae/code_metapath2vec/model")
+	parser.add_argument('--save_dir',type=str, default="save_model") 
 
 	parser.add_argument('--method',type=str, default="m2v_default")
 
