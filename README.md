@@ -3,8 +3,7 @@
 
 ## Requirements
   * Python3
-  *  
-  * 
-  * 
+  * Pytorch 
 
 ## Usage
+  * For balance-data, M2V, M2V + fair-sampling, M2V + projection, M2V + fair-sampling + projection, go to ```meta_path```
