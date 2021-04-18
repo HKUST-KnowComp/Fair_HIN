@@ -27,14 +27,7 @@ def read(args):
 			to_be_sort.append((para,np.mean(result[para]['dev_mrr'])))
 		to_be_sort = sorted(to_be_sort,key=lambda elem:elem[1])
 		best_para, best_dev_mrr = to_be_sort[-1]
-		print('0 th')
-		print(to_be_sort[0])
-		print('1 th')
-		print(to_be_sort[1])
-		print('2 th')
-		print(to_be_sort[2])
-		print('last th')
-		print(to_be_sort[-1])
+		
 		print("dev mrr {:1.5f}".format(np.mean(result[best_para]['dev_mrr'])))
 		print("dev {} {:1.5f}".format(args.criterion, np.mean(result[best_para]['dev_{}'.format(args.criterion)])))
 		print("test mrr {:1.5f}".format(np.mean(result[best_para]['test_mrr'])))
@@ -50,8 +43,3 @@ if __name__ == "__main__":
 	parser.add_argument('--dataset', type=str, default="ml")
 	args = parser.parse_args()
 	read(args)
-
-	# threshold['dp'] = {'dev_low':0.1031,'dev_med':0.1547,'dev_high':0.2062, 'dev_unlimited': 1,\
-	# 				'test_low':0.0918,'test_med':0.1377,'test_high':0.1836, 'test_unlimited': 1}
-	# threshold['eo'] = {'dev_low':0.0596,'dev_med':0.0840,'dev_high':0.1179, 'dev_unlimited': 1,\
-	# 				'test_low':0.0428,'test_med':0.0643,'test_high':0.0857, 'test_unlimited': 1}
