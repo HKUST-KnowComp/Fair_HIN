@@ -45,8 +45,8 @@ def train(num_walks,walk_len):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	
-	parser.add_argument('--output_data_dir',type=str, default="/data/zzengae/metapath2vec/path/movie/") 
-	parser.add_argument('--emb_dir',type=str, default="/data/zzengae/code_metapath2vec/emb/movie") 
+	parser.add_argument('--output_data_dir',type=str, default="path")  #/data/zzengae/metapath2vec/path/movie/
+	parser.add_argument('--emb_dir',type=str, default="emb")  # /data/zzengae/code_metapath2vec/emb/movie
 
 	parser.add_argument('--data_dir',type=str, default='MovieLens')  # cpu4
 	parser.add_argument('--result_dir',type=str, default='result_movie_balance') 

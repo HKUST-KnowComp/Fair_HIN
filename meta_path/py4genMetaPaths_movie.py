@@ -450,9 +450,9 @@ if __name__ == "__main__":
 
 	parser.add_argument('--data_dir',type=str, default="MovieLens")
 
-	parser.add_argument('--output_data_dir',type=str, default=".")
+	parser.add_argument('--output_data_dir',type=str, default="path")
 
-	parser.add_argument('--emb_dir',type=str, default=".")
+	parser.add_argument('--emb_dir',type=str, default="emb")
 
 
 	args = parser.parse_args()

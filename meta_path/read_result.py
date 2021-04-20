@@ -28,15 +28,15 @@ def read(args):
 		to_be_sort = sorted(to_be_sort,key=lambda elem:elem[1])
 		best_para, best_dev_mrr = to_be_sort[-1]
 		
-		print("dev mrr {:1.5f}".format(np.mean(result[best_para]['dev_mrr'])))
-		print("dev {} {:1.5f}".format(args.criterion, np.mean(result[best_para]['dev_{}'.format(args.criterion)])))
+		print("dev mrr  {:1.5f}".format(np.mean(result[best_para]['dev_mrr'])))
+		print("dev {}   {:1.5f}".format(args.criterion, np.mean(result[best_para]['dev_{}'.format(args.criterion)])))
 		print("test mrr {:1.5f}".format(np.mean(result[best_para]['test_mrr'])))
-		print("test {} {:1.5f}".format(args.criterion, np.mean(result[best_para]['test_{}'.format(args.criterion)])))
+		print("test {}  {:1.5f}".format(args.criterion, np.mean(result[best_para]['test_{}'.format(args.criterion)])))
 		
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
-	parser.add_argument('--data_dir', type=str, default='.')
+	parser.add_argument('--data_dir', type=str, default='output_result')
 	parser.add_argument('--method', type=str, default='m2v_bias')
 	parser.add_argument('--criterion', type=str, default="eo")
 	parser.add_argument('--fair_level', type=str, default="high")

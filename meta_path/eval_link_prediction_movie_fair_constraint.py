@@ -15,6 +15,7 @@ import json
 import copy
 from datetime import datetime
 import time
+from os.path import join, exists
 # Global Variables
 emb = {}
 user_concentration = {}
@@ -423,6 +424,8 @@ if __name__ == "__main__":
 
 	parser.add_argument('--emb_dir',type=str, default="emb") 
 
+	parser.add_argument('--output_dir',type=str, default="output_result") 
+
 	parser.add_argument('--save_dir',type=str, default="save_model") 
 
 	parser.add_argument('--method',type=str, default="m2v_default")
@@ -443,6 +446,9 @@ if __name__ == "__main__":
 	# 				'test_high':0.0992,'test_med':0.1488,'test_low':0.1984}
 	# threshold['eo'] = {'dev_high':0.0590,'dev_med':0.0884,'dev_low':0.1179,\
 	# 				'test_high':0.0524,'test_med':0.0786,'test_low':0.1047}
+	
+	if not exists(args.output_dir):
+		os.makedirs(args.output_dir)
 
 	with open(args.thres_file, 'r') as fin:
 		threshold = json.load(fin)
@@ -539,7 +545,7 @@ if __name__ == "__main__":
 			and mrr_dev > mrr_best['dp_'+fair_level]) or epoch == 0:
 				mrr_best['dp_'+fair_level] = mrr_dev
 				
-				if not os.path.exists(args.save_dir):
+				if not exists(args.save_dir):
 					os.makedirs(args.save_dir)
 				torch.save(net.state_dict(), os.path.join(args.save_dir,'ml_model_dp_{}_{}.pkl'.format(fair_level,time_stamp)))
 				
@@ -549,7 +555,7 @@ if __name__ == "__main__":
 			and mrr_dev > mrr_best['eo_'+fair_level]) or epoch == 0:
 				mrr_best['eo_'+fair_level] = mrr_dev
 				
-				if not os.path.exists(args.save_dir):
+				if not exists(args.save_dir):
 					os.makedirs(args.save_dir)
 				torch.save(net.state_dict(), os.path.join(args.save_dir,'ml_model_eo_{}_{}.pkl'.format(fair_level,time_stamp)))
 				
@@ -579,7 +585,7 @@ if __name__ == "__main__":
 		dp_test, eo_test = fairness_salient(test_result,test_labels,test_users)
 
 		
-		with open('{}_dp_{}_ml.txt'.format(args.method,fair_level),'a') as fo:
+		with open(join(args.output_dir,'{}_dp_{}_ml.txt'.format(args.method,fair_level)),'a') as fo:
 			fo.write('emb {} outer_no {:2d} inner_no {:2d}\n'.format(
 				args.emb, args.outer_no, args.inner_no))
 			fo.write('dev_mrr {:.5f} dev_dp {:.5f}\n'.format(mrr_dev, dp_dev))
@@ -611,7 +617,7 @@ if __name__ == "__main__":
 		dp_test, eo_test = fairness_salient(test_result,test_labels,test_users)
 
 
-		with open('{}_eo_{}_ml.txt'.format(args.method,fair_level),'a') as fo:
+		with open(join(args.output_dir,'{}_eo_{}_ml.txt'.format(args.method,fair_level)),'a') as fo:
 			fo.write('emb {} outer_no {:2d} inner_no {:2d}\n'.format(
 				args.emb, args.outer_no, args.inner_no))
 			fo.write('dev_mrr {:.5f} dev_eo {:.5f}\n'.format(mrr_dev, eo_dev))
